@@ -1,16 +1,27 @@
 {% extends "layout.html" %}
 {% block content %}
-    {% for post in posts %}
-        <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="#">{{ post.author }}</a>
-              <small class="text-muted">{{ post.date_posted }}</small>
-            </div>
-            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.ingredients  }}</p>
-            <p class="article-content">{{ post.method  }}</p>
-          </div>
-        </article>
-    {% endfor %}
+	{% for post in posts %}
+	<article class="media content-section">
+		<div class="media-body">
+			<h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+
+			<div class="article-metadata">
+				 By <a class="mr-2" href="#">{{ post.author }}</a> on 
+				<small class="text-muted">{{ post.date_posted }}</small>
+			</div>
+			
+			<p>
+				<h3>Ingredients</h3>
+				{% for item in post.ingredients %}
+					<li>{{ item }}</li>
+				{% endfor %}
+				<br>
+				<h3>Method</h3>
+				{% for step in post.method %}
+					<li>{{ step }}</li>
+				{% endfor %}
+			</p>
+		</div>
+	</article>
+	{% endfor %}
 {% endblock content %}
