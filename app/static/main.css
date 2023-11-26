@@ -9,11 +9,16 @@ body {
   }
   
   .bg-steel {
-    background-color: #5f788a;
+    background: linear-gradient(to right, hsl(240, 75%, 12%), hsl(245, 45%, 21%));
   }
   
   .site-header .navbar-nav .nav-link {
-    color: #095f91;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    overflow-x: hidden;
+    background: var(--color-bg);
+    font-size: 0.9rem;
   }
   
   .site-header .navbar-nav .nav-link:hover {
