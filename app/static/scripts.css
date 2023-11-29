@@ -13,3 +13,21 @@
     width: 2000px;
     height: 2000px;
 } */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+ }
+ .card {
+    margin-bottom: 20px;
+ }
+ .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+ }
+ 
+ .card {
+    flex: 1 0 21%; /* This makes the cards take up 21% of the container's width */
+    margin: 1%; /* This adds a 1% margin around the cards */
+ }

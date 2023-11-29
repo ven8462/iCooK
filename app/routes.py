@@ -8,27 +8,7 @@ from app import app, db, bcrypt
 from app.models import User
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message, Mail
-import requests
-
-
-posts = [
-    {
-        "author": "Lavender",
-        "title": "Chapo Beans",
-        "ingredients": ["chapo", "beans"],
-        "method": ["Make chapos", "cook beans", "serve while hot"],
-        "date_posted": "Nov 20, 2023",
-        "date_updated": "Nov 22, 2023",
-    },
-    {
-        "author": "Ven",
-        "title": "Ugali Beef",
-        "ingredients": ["flour", "water", "beef", "onions", "tomatoes", "oil", "salt", "dhania"],
-        "method": ["Make ugali", "cook beef", "serve while hot"],
-        "date_posted": "Oct 20, 2023",
-        "date_updated": "Oct 22, 2023",
-    },
-]
+from app.recipe import get_recipe_details
 
 
 @app.route('/')
@@ -41,6 +21,10 @@ def home():
 def about():
     return render_template('about.html', title='About')
 
+@app.route('/recipe/<id>', methods=['GET', ])
+def recipe_detail(id):
+     recipe = get_recipe_details(id)
+     return render_template('recipe_detail.html', recipe=recipe)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
