@@ -1,7 +1,7 @@
 import os
 import secrets
 from PIL import Image
-from flask import render_template, url_for, flash, redirect, request
+from flask import jsonify, render_template, url_for, flash, redirect, request
 from app.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
                              RequestResetForm, ResetPasswordForm)
 from app import app, db, bcrypt
@@ -9,12 +9,38 @@ from app.models import User
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message, Mail
 from app.recipe import get_recipe_details
+import requests
 
 
 @app.route('/')
 @app.route("/home")
 def home():
     return render_template('index.html')
+
+@app.route("/recipe/<recipe_id>")
+def recipe(recipe_id):
+   url = f"https://api.edamam.com/api/recipes/v2/{recipe_id}"
+
+   params = {
+   "type": "public",
+   "app_id": "5f8d15e8",
+   "app_key": "7e4f94d1f57158c014144b6f0864dc56",
+}
+
+
+   response = requests.get(url, params=params).json()
+
+   recipe_dict = {}
+
+   recipe_dict["title"] = response.get("recipe").get("label")
+   recipe_dict["image"] = response.get("recipe").get("image") 
+   recipe_dict["source"] = response.get("recipe").get("source")
+   recipe_dict["url"] = response.get("recipe").get("url")
+   recipe_dict["ingredients_list"] = response.get("recipe").get("ingredientLines")
+
+   return render_template('recipe.html', recipe=recipe_dict)
+
+
 
 
 @app.route("/about")
@@ -24,7 +50,7 @@ def about():
 @app.route('/recipe/<id>', methods=['GET', ])
 def recipe_detail(id):
      recipe = get_recipe_details(id)
-     return render_template('recipe_detail.html', recipe=recipe)
+     return render_template('recipe_details.html', recipe=recipe)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():

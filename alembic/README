@@ -100,3 +100,59 @@ function useApiData(data){
 //  }
  
 
+// third correct code
+// let searchButton = document.querySelector('#search')
+
+// // Function to fetch and display data
+// function fetchAndDisplayData(inputValue) {
+//  let APP_ID = '5f8d15e8'
+//  let API_KEY = '7e4f94d1f57158c014144b6f0864dc56'
+
+//  // Replace 'yourApiUrl' with the URL of the API you're using
+//  var apiUrl = `https://api.edamam.com/search?app_id=${APP_ID}&app_key=${API_KEY}&q=${inputValue}`
+
+//  fetch(apiUrl)
+//      .then(response => response.json())
+//      .then(data => useApiData(data))
+//      .catch(error => console.error('Error:', error));
+// }
+
+// // Function to handle search button click
+// searchButton.addEventListener('click', function() {
+//  var inputValue = document.getElementById('searchInput').value;
+//  fetchAndDisplayData(inputValue);
+// });
+
+// // Call fetchAndDisplayData when the page loads
+// window.onload = function() {
+//  var foodItems = ['apple', 'banana', 'carrot', 'chicken', 'fish', 'grape', 'kiwi', 'lemon', 'mango', 'orange', 'pineapple', 'strawberry', 'tomato', 'watermelon']; // Replace this with your list of food items
+//  var randomIndex = Math.floor(Math.random() * foodItems.length);
+//  var randomFoodItem = foodItems[randomIndex];
+//  fetchAndDisplayData(randomFoodItem); // Fetch and display data for a random food item when the page loads
+// };
+
+// function useApiData(data){
+//     if (data.hits && data.hits.length > 0) {
+//      let content = '<div class="card-container">';
+//      data.hits.forEach(hit => {
+//          let recipeUrl = `/recipe/${hit.recipe.label}`;
+//          let ingredients = hit.recipe.ingredientLines;
+//          let ingredientList = ingredients.map(ingredient => `<li>${ingredient}</li>`).join('');
+//          content += `
+//          <div class="card col-6 offset-2" style="width: 22rem;">
+//          <a href="${recipeUrl}">
+//              <h5 class="card-title">${hit.recipe.label}</h5>
+//              <img src="${hit.recipe.image}" class="card-img-top" alt="...">
+//              <ol>${ingredientList}</ol>
+//          </a>
+//              <div class="card-body">
+//              </div>
+//          </div>
+//          `;
+//      });
+//      content += '</div>';
+//      document.querySelector("#content").innerHTML = content;
+//     } else {
+//      console.error('No hits found in the API response');
+//     }
+//    }

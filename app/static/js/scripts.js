@@ -29,21 +29,40 @@ window.onload = function() {
 };
 
 function useApiData(data){
-   if (data.hits && data.hits.length > 0) {
-       let content = '<div class="card-container">';
-       data.hits.forEach(hit => {
-           content += `
-           <div class="card col-6 offset-2" style="width: 22rem;">
-           <h5 class="card-title">${hit.recipe.label}</h5>
-               <img src="${hit.recipe.image}" class="card-img-top" alt="...">
-               <div class="card-body">
-               </div>
-           </div>
-           `;
-       });
-       content += '</div>';
-       document.querySelector("#content").innerHTML = content;
-   } else {
-       console.error('No hits found in the API response');
-   }
-}
+    if (data.hits && data.hits.length > 0) {
+        let content = '<div class="card-container">';
+        data.hits.forEach(hit => {
+            let recipeUri = hit.recipe.uri;
+            let recipeId = recipeUri.split('#recipe_')[1];
+            let recipeUrl = `/recipe/${recipeId}`;
+            
+            let ingredients = hit.recipe.ingredientLines;
+            let ingredientList = ingredients.map(ingredient => `<li>${ingredient}</li>`).join('');
+            content += `
+            <div class="card col-6 offset-2" style="width: 22rem;">
+            <h5>${hit.recipe.label}</h5>
+            <a href="${recipeUrl}" onclick="getRecipe('${recipeId}')">
+            <img src="${hit.recipe.image}" class="card-img-top" alt="..." onclick="getRecipe('${recipeId}')">
+            </a>
+                <div class="card-body">
+                </div>
+            </div>
+            `;
+        });
+        content += '</div>';
+        document.querySelector("#content").innerHTML = content;
+    } else {
+        console.error('No hits found in the API response');
+    }
+ }
+ 
+ function getRecipe(recipeId) {
+    fetch(`/recipe/${recipeId}`)
+        .then(response => response.json())
+        .then(data => {
+            // Handle the returned data here
+            console.log(data);
+        })
+        .catch(error => console.error('Error:', error));
+ }
+ 
