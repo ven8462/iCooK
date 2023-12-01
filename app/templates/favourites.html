@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Favorites</title>
+</head>
+<body>
+   <h1>Favorites</h1>
+   <ul>
+       {% for favorite in favorites %}
+       <li>{{ favorite.recipe.name }}</li>
+       {% endfor %}
+   </ul>
+</body>
+</html>
+from sqlalchemy import create_engine, MetaData
+from app import db
+
+# Create an engine
+engine = create_engine(db.engine.url)
+
+# Create a MetaData instance
+metadata = MetaData()
+
+# Bind the MetaData to the engine
+metadata.bind = engine
+
+# Reflect the database
+metadata.reflect()
+
+# Print the database and table information
+print("Databases:", engine.execute("SHOW DATABASES").fetchall())
+for table in metadata.sorted_tables:
+    print("Table:", table.name)
+    for column in table.columns:
+        print(f"  Column: {column.name}, Type: {column.type}")

@@ -3,19 +3,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
     <title>{{ recipe.title }}</title>
 </head>
 <body>
     <h1>{{ recipe.title }}</h1>
     <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
     <p>Source: <a href="{{ recipe.url }}" target="_blank">{{ recipe.source }}</a></p>
+
+    <!-- Debugging Information -->
+    <p>Recipe ID: {{ recipe.id }}</p>
+
+    <!-- Adding to favorites form -->
+<form method="POST" action="/add-to-favorites">
+    <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+    <input type="submit" value="Add to Favorites">
+</form>
+
+    <!-- Adding to shopping list form -->
     <h2>Ingredients</h2>
-    <ul>
-        {% for ingredient in recipe.ingredients_list %}
-            <li>{{ ingredient }}</li>
-        {% endfor %}
-    </ul>
+    <form method="POST" action="/add-to-shopping-list">
+        <ul>
+            {% for ingredient in recipe.ingredients_list %}
+                <li>
+                    <input type="checkbox" name="ingredients" value="{{ ingredient }}">
+                    {{ ingredient }}
+                </li>
+            {% endfor %}
+        </ul>
+        <input type="submit" value="Add to Shopping List">
+    </form>
 </body>
 </html>
 {% endblock content %}
