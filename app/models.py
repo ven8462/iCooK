@@ -41,3 +41,4 @@ class Favorite(db.Model):
     image = db.Column(db.String(255), nullable=True)
     source = db.Column(db.String(255), nullable=True)
     url = db.Column(db.String(255), nullable=True)
+    ingredients = db.Column(db.String(255), nullable=True)

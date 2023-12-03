@@ -1,35 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-   <title>Favorites</title>
-</head>
-<body>
-   <h1>Favorites</h1>
-   <ul>
-       {% for favorite in favorites %}
-       <li>{{ favorite.recipe.name }}</li>
-       {% endfor %}
-   </ul>
-</body>
-</html>
-from sqlalchemy import create_engine, MetaData
-from app import db
+<!-- templates/favorites.html -->
 
-# Create an engine
-engine = create_engine(db.engine.url)
+<!-- templates/favorites.html -->
 
-# Create a MetaData instance
-metadata = MetaData()
-
-# Bind the MetaData to the engine
-metadata.bind = engine
-
-# Reflect the database
-metadata.reflect()
-
-# Print the database and table information
-print("Databases:", engine.execute("SHOW DATABASES").fetchall())
-for table in metadata.sorted_tables:
-    print("Table:", table.name)
-    for column in table.columns:
-        print(f"  Column: {column.name}, Type: {column.type}")
+{% extends "layout.html" %}
+{% block content %}
+<h2>Your Favorite Recipes</h2>
+<ul>
+    {% for favorite in favorites %}
+        <li>
+            <img src="{{ favorite.image }}" alt="{{ favorite.title }}">
+            {{ favorite.title }}
+            <form method="post" action="{{ url_for('delete_favorite', favorite_id=favorite.id) }}" style="display: inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        <!-- Add other details as needed -->
+    {% endfor %}
+</ul>
+{% endblock %}

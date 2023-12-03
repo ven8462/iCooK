@@ -11,6 +11,7 @@ from flask_mail import Message, Mail
 from app.recipe import get_recipe_details
 import requests
 from urllib.parse import urlparse
+from app.models import Favorite
 
 
 @app.route('/')
@@ -20,6 +21,8 @@ def home():
 
 @app.route("/recipe/<recipe_id>")
 def recipe(recipe_id):
+   
+   print(recipe_id)
    url = f"https://api.edamam.com/api/recipes/v2/{recipe_id}"
 
    params = {
@@ -39,13 +42,15 @@ def recipe(recipe_id):
    recipe_dict["url"] = response.get("recipe").get("url")
    recipe_dict["ingredients_list"] = response.get("recipe").get("ingredientLines")
 
-   return render_template('recipe.html', recipe=recipe_dict)
+   return render_template('recipe.html', recipe=recipe_dict,id=recipe_id)
 
    
 @app.route("/add-to-favorites", methods=["POST"])
+@login_required
 def add_to_favorites():
     if request.method == "POST":
         recipe_id = request.form.get("recipe_id")
+        print(recipe_id)
 
         # Fetch recipe details using the recipe_id (similar to your /recipe/<recipe_id> route)
         url = f"https://api.edamam.com/api/recipes/v2/{recipe_id}"
@@ -54,7 +59,7 @@ def add_to_favorites():
             "app_id": "5f8d15e8",
             "app_key": "7e4f94d1f57158c014144b6f0864dc56",
         }
-        
+
         response = requests.get(url, params=params)
 
         if response.status_code == 200:
@@ -67,21 +72,20 @@ def add_to_favorites():
                     image=recipe_details.get("image"),
                     source=recipe_details.get("source"),
                     url=recipe_details.get("url"),
+
                 )
 
                 db.session.add(favorite)
                 db.session.commit()
 
-                # Redirect the user back to the recipe page
-                return redirect(url_for('recipe', recipe_id=recipe_id))
+                flash("Recipe added to favorites", "success")
             else:
-                flash('Error fetching recipe details from the API', 'error')
+                flash("Error fetching recipe details from the API", "error")
         else:
-            flash('Error in API request. Status Code: {}'.format(response.status_code), 'error')
+            flash("Error in API request. Status Code: {}".format(response.status_code), "error")
 
-        # Redirect the user back to the recipe page
-        return redirect(url_for('recipe', recipe_id=recipe_id))
-
+    # Redirect the user back to the recipe page
+    return redirect(url_for("recipe", recipe_id=recipe_id))
 
 @app.route("/about")
 def about():
@@ -212,4 +216,19 @@ def favorites():
    favorites = current_user.get_favorites() if current_user.is_authenticated else []
 
    # Pass the favorites to the template
-   return render_template('favorites.html', favorites=favorites)
+   return render_template('favourites.html', favorites=favorites)
+
+@app.route('/delete-favorite/<int:favorite_id>', methods=['POST'])
+@login_required
+def delete_favorite(favorite_id):
+    favorite = Favorite.query.get_or_404(favorite_id)
+
+    # Ensure that the current user owns the favorite before deleting
+    if favorite.user_id == current_user.id:
+        db.session.delete(favorite)
+        db.session.commit()
+        flash('Recipe deleted from favorites', 'success')
+    else:
+        flash('You are not authorized to delete this recipe', 'danger')
+
+    return redirect(url_for('favorites'))

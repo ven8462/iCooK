@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>{{ recipe.title }}</title>
+
 </head>
 <body>
     <h1>{{ recipe.title }}</h1>
@@ -15,7 +16,7 @@
 
     <!-- Adding to favorites form -->
 <form method="POST" action="/add-to-favorites">
-    <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+    <input type="text" name="recipe_id" value="{{ id }}">
     <input type="submit" value="Add to Favorites">
 </form>
 
@@ -32,6 +33,11 @@
         </ul>
         <input type="submit" value="Add to Shopping List">
     </form>
+
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 </html>
 {% endblock content %}
+
+
