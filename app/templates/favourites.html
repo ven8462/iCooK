@@ -1,7 +1,5 @@
 <!-- templates/favorites.html -->
 
-<!-- templates/favorites.html -->
-
 {% extends "layout.html" %}
 {% block content %}
 <h2>Your Favorite Recipes</h2>
@@ -17,4 +15,30 @@
         <!-- Add other details as needed -->
     {% endfor %}
 </ul>
+
+ <!-- Display Shopping List -->
+ <h2>Your Shopping List</h2>
+ <ul>
+     {% if current_user.shopping_list %}
+         {% for item in current_user.shopping_list %}
+         <ul>
+            {% for item in shopping_list_items %}
+                <li>{{ item.ingredient }}</li>
+            {% endfor %}
+        </ul>
+         {% endfor %}
+     {% else %}
+         <p>Your shopping list is empty.</p>
+     {% endif %}
+ </ul>
+
+ {% with messages = get_flashed_messages() %}
+     {% if messages %}
+         <ul class="flashes">
+             {% for message in messages %}
+                 <li>{{ message }}</li>
+             {% endfor %}
+         </ul>
+     {% endif %}
+ {% endwith %}
 {% endblock %}

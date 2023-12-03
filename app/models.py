@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(60), nullable=False)
     favorites = db.relationship("Favorite", backref="user", lazy=True)
+    shopping_list = db.relationship("ShoppingList", backref="user", uselist=False)
 
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(app.config['SECRET_KEY'], expires_sec)
@@ -42,3 +43,11 @@ class Favorite(db.Model):
     source = db.Column(db.String(255), nullable=True)
     url = db.Column(db.String(255), nullable=True)
     ingredients = db.Column(db.String(255), nullable=True)
+
+
+
+class ShoppingList(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    recipe_id = db.Column(db.String(255), nullable=False) 
+    ingredient = db.Column(db.String(255), nullable=False)

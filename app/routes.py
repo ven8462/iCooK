@@ -11,7 +11,7 @@ from flask_mail import Message, Mail
 from app.recipe import get_recipe_details
 import requests
 from urllib.parse import urlparse
-from app.models import Favorite
+from app.models import Favorite, User, ShoppingList
 
 
 @app.route('/')
@@ -232,3 +232,30 @@ def delete_favorite(favorite_id):
         flash('You are not authorized to delete this recipe', 'danger')
 
     return redirect(url_for('favorites'))
+
+# Example route for adding to shopping list
+
+@app.route('/add-to-shopping-list', methods=['POST'])
+@login_required
+def add_to_shopping_list():
+    user_id = current_user.id
+    recipe_id = request.form.get('recipe_id')
+    selected_ingredients = request.form.getlist('ingredients')
+
+    # Create ShoppingList entries for each selected ingredient
+    for ingredient in selected_ingredients:
+        shopping_list_item = ShoppingList(user_id=user_id, recipe_id=recipe_id, ingredient=ingredient)
+        db.session.add(shopping_list_item)
+
+    db.session.commit()
+
+    flash("Ingredients added to your shopping list", "success")
+
+    return redirect(url_for("recipe", recipe_id=recipe_id))
+
+
+# @app.route('/shopping-list')
+# @login_required
+# def shopping_list():
+#     shopping_list_items = ShoppingList.query.filter_by(user_id=current_user.id).all()
+#     return render_template('shopping_list.html', shopping_list_items=shopping_list_items)
