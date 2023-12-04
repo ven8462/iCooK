@@ -13,6 +13,8 @@ import requests
 from urllib.parse import urlparse
 from app.models import Favorite, User, ShoppingList
 
+with app.app_context():
+   db.create_all()
 
 @app.route('/')
 @app.route("/home")
@@ -233,6 +235,23 @@ def delete_favorite(favorite_id):
 
     return redirect(url_for('favorites'))
 
+
+@app.route('/delete-shopping-list/<int:id>', methods=['POST'])
+@login_required
+def delete_shopping(id):
+    del_shopping = ShoppingList.query.get_or_404(id)
+
+    # Ensure that the current user owns the favorite before deleting
+    if  del_shopping.user_id == current_user.id:
+        db.session.delete(del_shopping)
+        db.session.commit()
+        flash('Ingredient deleted from shopping list', 'success')
+    else:
+        flash('You are not authorized to delete this recipe', 'danger')
+
+    return redirect(url_for('favorites'))
+
+
 # Example route for adding to shopping list
 
 @app.route('/add-to-shopping-list', methods=['POST'])
@@ -240,7 +259,10 @@ def delete_favorite(favorite_id):
 def add_to_shopping_list():
     user_id = current_user.id
     recipe_id = request.form.get('recipe_id')
-    selected_ingredients = request.form.getlist('ingredients')
+    selected_ingredients = request.form.getlist('ingredients[]')
+    print(user_id)
+    print(recipe_id)
+    print(selected_ingredients)
 
     # Create ShoppingList entries for each selected ingredient
     for ingredient in selected_ingredients:

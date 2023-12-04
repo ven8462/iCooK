@@ -20,25 +20,17 @@
  <h2>Your Shopping List</h2>
  <ul>
      {% if current_user.shopping_list %}
-         {% for item in current_user.shopping_list %}
-         <ul>
-            {% for item in shopping_list_items %}
-                <li>{{ item.ingredient }}</li>
-            {% endfor %}
-        </ul>
+     {% for item in current_user.shopping_list %}
+   <ul>
+       <li>{{ item.ingredient }}</li>
+       <form method="post" action="{{ url_for('delete_shopping', id=item.id) }}" style="display: inline;">
+        <button type="submit">Delete</button>
+    </form>
+   </ul>
          {% endfor %}
      {% else %}
          <p>Your shopping list is empty.</p>
      {% endif %}
  </ul>
 
- {% with messages = get_flashed_messages() %}
-     {% if messages %}
-         <ul class="flashes">
-             {% for message in messages %}
-                 <li>{{ message }}</li>
-             {% endfor %}
-         </ul>
-     {% endif %}
- {% endwith %}
 {% endblock %}

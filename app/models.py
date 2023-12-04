@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(60), nullable=False)
     favorites = db.relationship("Favorite", backref="user", lazy=True)
-    shopping_list = db.relationship("ShoppingList", backref="user", uselist=False)
+    shopping_list = db.relationship("ShoppingList", backref="user")
 
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(app.config['SECRET_KEY'], expires_sec)
@@ -31,6 +31,9 @@ class User(db.Model, UserMixin):
 
     def get_favorites(self):
         return Favorite.query.filter_by(user_id=self.id).all()
+    
+    def get_shopping_list(self):
+       return ShoppingList.query.filter_by(user_id=self.id).all()
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
