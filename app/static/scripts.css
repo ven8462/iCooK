@@ -31,6 +31,7 @@
     flex: 1 0 21%; /* This makes the cards take up 21% of the container's width */
     margin: 1%; /* This adds a 1% margin around the cards */
  }
- .recipe-label {
-    color: #6a3d8b; /* dark purple */
-   }
+ .carousel-inner img {
+    height: 400px; /* Set the height to the desired value */
+    width: auto; /* Maintain the aspect ratio */
+ }

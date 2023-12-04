@@ -6,31 +6,34 @@
 <ul>
     {% for favorite in favorites %}
         <li>
-            <img src="{{ favorite.image }}" alt="{{ favorite.title }}">
+           <div class="test">
+            <img src="{{ favorite.image }}" alt="{{ favorite.title }}" class="test-img">
             {{ favorite.title }}
             <form method="post" action="{{ url_for('delete_favorite', favorite_id=favorite.id) }}" style="display: inline;">
                 <button type="submit">Delete</button>
+           </div>
             </form>
         </li>
         <!-- Add other details as needed -->
     {% endfor %}
 </ul>
 
- <!-- Display Shopping List -->
- <h2>Your Shopping List</h2>
- <ul>
-     {% if current_user.shopping_list %}
-     {% for item in current_user.shopping_list %}
-   <ul>
-       <li>{{ item.ingredient }}</li>
-       <form method="post" action="{{ url_for('delete_shopping', id=item.id) }}" style="display: inline;">
-        <button type="submit">Delete</button>
-    </form>
-   </ul>
-         {% endfor %}
-     {% else %}
-         <p>Your shopping list is empty.</p>
-     {% endif %}
- </ul>
+<!-- Display Shopping List -->
+<h2>Your Shopping List</h2>
+<ul class="shopping-list">
+    {% if current_user.shopping_list %}
+        {% for item in current_user.shopping_list %}
+            <li class="shopping-item">
+                <form method="post" action="{{ url_for('delete_shopping', id=item.id) }}" class="delete-form">
+                    <button type="submit" class="delete-btn">-</button>
+                </form>
+                <span class="item-name">{{ item.ingredient }}</span>
+            </li>
+        {% endfor %}
+    {% else %}
+        <p>Your shopping list is empty.</p>
+    {% endif %}
+</ul>
+
 
 {% endblock %}
