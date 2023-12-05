@@ -1,6 +1,6 @@
 body {
-    background: lavender;
-    color: #A7AFB2;
+    background: #d4cece;
+    color: #223030;
     margin-top: 5rem;
   }
   
@@ -9,7 +9,7 @@ body {
   }
   
   .bg-steel {
-    background: linear-gradient(to right, #123524, #305252);
+    background: linear-gradient(to right, #555, #123524, #6c6666);
 
   }
   

@@ -19,11 +19,12 @@ with app.app_context():
 @app.route('/')
 @app.route("/home")
 def home():
+    """Render the home page."""
     return render_template('index.html')
 
 @app.route("/recipe/<recipe_id>")
 def recipe(recipe_id):
-   
+   """Render the recipe page for a given recipe ID."""
    print(recipe_id)
    url = f"https://api.edamam.com/api/recipes/v2/{recipe_id}"
 
@@ -50,6 +51,7 @@ def recipe(recipe_id):
 @app.route("/add-to-favorites", methods=["POST"])
 @login_required
 def add_to_favorites():
+    """Add a recipe to the user's favorites."""
     if request.method == "POST":
         recipe_id = request.form.get("recipe_id")
         print(recipe_id)
@@ -91,15 +93,18 @@ def add_to_favorites():
 
 @app.route("/about")
 def about():
+    """Render the about page."""
     return render_template('about.html', title='About')
 
 @app.route('/recipe/<id>', methods=['GET', ])
 def recipe_detail(id):
+     """Print the detailed view of a recipe."""
      recipe = get_recipe_details(id)
      return render_template('recipe_details.html', recipe=recipe)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+    """Handle user registration."""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RegistrationForm()
@@ -114,6 +119,7 @@ def register():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    """Handle user login."""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm()
@@ -130,6 +136,7 @@ def login():
 
 @app.route("/logout")
 def logout():
+    """Handle user logout."""
     logout_user()
     return redirect(url_for('home'))
 
@@ -151,6 +158,7 @@ def save_picture(form_picture):
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
+    """Renders user's account details"""
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.picture.data:
@@ -169,6 +177,7 @@ def account():
                            image_file=image_file, form=form)
 
 def send_reset_email(user):
+    """Send a password reset email to the user."""
     mail = Mail(app)
     token = user.get_reset_token()
     msg = Message('Password Reset Request',
@@ -184,6 +193,7 @@ If you did not make this request then simply ignore this email and no changes wi
 
 @app.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
+    """Handle the request to reset the user's password."""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RequestResetForm()
@@ -197,6 +207,7 @@ def reset_request():
 
 @app.route("/reset_password/<token>", methods=['GET', 'POST'])
 def reset_token(token):
+    """Handle the password reset token."""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     user = User.verify_reset_token(token)
@@ -223,6 +234,7 @@ def favorites():
 @app.route('/delete-favorite/<int:favorite_id>', methods=['POST'])
 @login_required
 def delete_favorite(favorite_id):
+    """Delete a recipe from the user's favorites."""
     favorite = Favorite.query.get_or_404(favorite_id)
 
     # Ensure that the current user owns the favorite before deleting
@@ -239,6 +251,7 @@ def delete_favorite(favorite_id):
 @app.route('/delete-shopping-list/<int:id>', methods=['POST'])
 @login_required
 def delete_shopping(id):
+    """Delete an item from the user's shopping list."""
     del_shopping = ShoppingList.query.get_or_404(id)
 
     # Ensure that the current user owns the favorite before deleting
@@ -257,6 +270,7 @@ def delete_shopping(id):
 @app.route('/add-to-shopping-list', methods=['POST'])
 @login_required
 def add_to_shopping_list():
+    """Add selected ingredients to the user's shopping list."""
     user_id = current_user.id
     recipe_id = request.form.get('recipe_id')
     selected_ingredients = request.form.getlist('ingredients[]')
@@ -275,9 +289,3 @@ def add_to_shopping_list():
 
     return redirect(url_for("recipe", recipe_id=recipe_id))
 
-
-# @app.route('/shopping-list')
-# @login_required
-# def shopping_list():
-#     shopping_list_items = ShoppingList.query.filter_by(user_id=current_user.id).all()
-#     return render_template('shopping_list.html', shopping_list_items=shopping_list_items)
