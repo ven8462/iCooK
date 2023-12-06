@@ -2,38 +2,45 @@
 
 {% extends "layout.html" %}
 {% block content %}
-<h2>Your Favorite Recipes</h2>
-<ul>
-    {% for favorite in favorites %}
-        <li>
-           <div class="test">
-            <img src="{{ favorite.image }}" alt="{{ favorite.title }}" class="test-img">
-            {{ favorite.title }}
-            <form method="post" action="{{ url_for('delete_favorite', favorite_id=favorite.id) }}" style="display: inline;">
-                <button type="submit">Delete</button>
-           </div>
-            </form>
-        </li>
-        <!-- Add other details as needed -->
-    {% endfor %}
-</ul>
+    <div class="content-container">
+        <!-- Your Favorite Recipes -->
+        <div class="content">
+            <h2>Your Favorite Recipes</h2>
+            <ul>
+                {% for favorite in favorites %}
+                    <li>
+                        <div class="test">
+                            <img src="{{ favorite.image }}" alt="{{ favorite.title }}" class="test-img">
+                            {{ favorite.title }}
+                            <form method="post" action="{{ url_for('delete_favorite', favorite_id=favorite.id) }}" style="display: inline;">
+                                <button type="submit" class="delete-button">Delete</button>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
 
-<!-- Display Shopping List -->
-<h2>Your Shopping List</h2>
-<ul class="shopping-list">
-    {% if current_user.shopping_list %}
-        {% for item in current_user.shopping_list %}
-            <li class="shopping-item">
-                <form method="post" action="{{ url_for('delete_shopping', id=item.id) }}" class="delete-form">
-                    <button type="submit" class="delete-btn">-</button>
-                </form>
-                <span class="item-name">{{ item.ingredient }}</span>
-            </li>
-        {% endfor %}
-    {% else %}
-        <p>Your shopping list is empty.</p>
-    {% endif %}
-</ul>
+        <!-- Display Shopping List -->
+        <div class="content">
+            <h2>Your Shopping List</h2>
+            <ul class="shopping-list">
+                {% if current_user.shopping_list %}
+                    {% for item in current_user.shopping_list %}
+                        <li class="shopping-item">
+                            <form method="post" action="{{ url_for('delete_shopping', id=item.id) }}" class="delete-form">
+                                <button type="submit" class="delete-btn">-</button>
+                            </form>
+                            <span class="item-name">{{ item.ingredient }}</span>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <p>Your shopping list is empty.</p>
+                {% endif %}
+            </ul>
+        </div>
 
-
+        <!-- Static photo on the right side -->
+        <img src="{{ url_for('static', filename='images/favs.jpg') }}" alt="Static Photo" class="static-photo">
+    </div>
 {% endblock %}

@@ -1,3 +1,8 @@
+.body
+{
+    background-color: black;
+}
+
 .input-group{
     margin-top: 50px;
     margin-bottom: 50px;
@@ -35,3 +40,64 @@
     height: 400px; /* Set the height to the desired value */
     width: auto; /* Maintain the aspect ratio */
  }
+ /* Add this to your styles.css or equivalent stylesheet */
+
+ .input-group {
+    position: relative;
+}
+
+#searchInput {
+    border-radius: 5px; /* Add border-radius for rounded corners */
+    padding-right: 35px; /* Adjust the padding on the right to make space for the button */
+}
+
+#search {
+    position: absolute;
+    right: 5px; /* Adjust the right position for button placement */
+    top: 50%; /* Center the button vertically */
+    transform: translateY(-50%);
+    border: none;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#search:hover {
+    background-color: #2980b9;
+}
+
+.card {
+    border-radius: 15px; /* Adjust the border-radius to control the roundness of the edges */
+    overflow: hidden; /* Ensure content does not overflow rounded corners */
+}
+
+.card-img-top {
+    border-radius: 15px; /* Apply rounded corners to all corners of the image */
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.card-custom {
+    background-color: black;
+}
+.card-custom h5 a {
+    color: tan;
+    transform: skewX(-10deg); /* Adjust the angle as needed */
+}
+
+.content-container {
+    display: flex;
+}
+
+.content {
+    flex-grow: 1;
+}
+
+.static-photo {
+    max-width: 200px; /* Adjust the max-width as needed */
+    margin-left: 20px; /* Add margin for spacing */
+}

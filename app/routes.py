@@ -17,6 +17,9 @@ with app.app_context():
    db.create_all()
 
 @app.route('/')
+def landing():
+    return render_template('landing.html')
+
 @app.route("/home")
 def home():
     """Render the home page."""
@@ -94,7 +97,7 @@ def add_to_favorites():
 @app.route("/about")
 def about():
     """Render the about page."""
-    return render_template('about.html', title='About')
+    return render_template('landing.html', title='About')
 
 @app.route('/recipe/<id>', methods=['GET', ])
 def recipe_detail(id):

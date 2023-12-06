@@ -1,15 +1,17 @@
 body {
-    background: #d4cece;
-    color: #223030;
+    background: black;
+    color: whitesmoke;
     margin-top: 5rem;
+    font-size: 18px; /* Adjust the font size as needed */
+    line-height: 1.2; 
   }
   
   h1, h2, h3, h4, h5, h6 {
-    color: #444444;
+    color: tan;
   }
   
   .bg-steel {
-    background: linear-gradient(to right, #555, #123524, #6c6666);
+    background: linear-gradient(to right, #000, #333);
 
   }
   
@@ -31,48 +33,14 @@ body {
   }
   
   .content-section {
-    background: #123524;
+    background: black;
     padding: 10px 20px;
-    border: 1px solid ;
-    border-radius: 3px;
-    margin-bottom: 20px;
+    /* border: 1px solid ;
+    border-radius: 0px;
+    margin-bottom: 0px; */
   }
   
-  .article-title {
-    color: #444444;
-  }
   
-  a.article-title:hover {
-    color: #428bca;
-    text-decoration: none;
-  }
-  
-  .article-content {
-    white-space: pre-line;
-  }
-  
-  .article-img {
-    height: 65px;
-    width: 65px;
-    margin-right: 16px;
-  }
-  
-  .article-metadata {
-    padding-bottom: 1px;
-    margin-bottom: 4px;
-    border-bottom: 1px solid #e3e3e3
-  }
-  
-  .article-metadata a:hover {
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .article-svg {
-    width: 25px;
-    height: 25px;
-    vertical-align: middle;
-  }
   
   .account-img {
     height: 125px;
@@ -129,4 +97,20 @@ body {
 
 .item-name {
     margin-left: 30px; /* Adjust the margin as needed */
+}
+
+
+.delete-button{
+    background-color:  red; /* Beautiful red color, adjust as needed */
+    color: white; /* Text color */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+
+    /* Additional styles for hover state */
+    &:hover {
+        background-color: #8B2D19; /* Darker red color on hover, adjust as needed */
+    }
 }
