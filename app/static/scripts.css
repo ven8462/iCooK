@@ -57,14 +57,14 @@
     top: 50%; /* Center the button vertically */
     transform: translateY(-50%);
     border: none;
-    background-color: #3498db;
+    background-color: #1c3226;
     color: #fff;
     cursor: pointer;
     border-radius: 5px;
 }
 
 #search:hover {
-    background-color: #2980b9;
+    background-color: green;
 }
 
 .card {

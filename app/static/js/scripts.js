@@ -4,9 +4,9 @@ let searchButton = document.querySelector('#search')
 function fetchAndDisplayData(inputValue) {
     let APP_ID = '5f8d15e8';
     let API_KEY = '7e4f94d1f57158c014144b6f0864dc56';
-    let resultsCount = 52; // Set the number of results you want
+    let resultsCount = 52; // the number of recipes displayed on page load
 
-    // Replace 'yourApiUrl' with the URL of the API you're using
+   // calling the api
     var apiUrl = `https://api.edamam.com/search?app_id=${APP_ID}&app_key=${API_KEY}&q=${inputValue}&to=${resultsCount}`;
 
     fetch(apiUrl)

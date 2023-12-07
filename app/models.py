@@ -1,4 +1,5 @@
-from datetime import datetime
+# my database classes"
+
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask_login import UserMixin
 from app import db, login_manager, app
