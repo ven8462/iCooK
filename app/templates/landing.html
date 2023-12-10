@@ -27,7 +27,7 @@
 
 
                     <ul class="nav_list">
-                        <li class="nav_item"><a href="{{ url_for('home') }}" class="nav__link active-link">iCooK </a></li>
+                        <li class="nav_item"><a href="{{ url_for('home') }}" class="nav__link active-link">Home </a></li>
                         <li class="nav_item"><a href="{{ url_for('register') }}" class="nav__link">Signup</a></li>
                         <li class="nav_item"><a href="{{ url_for('login') }}"  class="nav__link">Log In </a></li>
                 </ul>
@@ -207,8 +207,7 @@
         <!--=============== SCROLL REVEAL ===============-->
         <script src="https://unpkg.com/scrollreveal"></script>
 
-        <!--=============== MAIN JS ===============-->
-        <script src="assets/js/main.js"></script>
+        <!--=============== LANDING JS ===============-->
         <script src="{{ url_for('static', filename='js/landing.js') }}"></script>
     </body>
 </html>

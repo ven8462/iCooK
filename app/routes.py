@@ -8,9 +8,7 @@ from app import app, db, bcrypt
 from app.models import User, Favorite
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message, Mail
-from app.recipe import get_recipe_details
 import requests
-from urllib.parse import urlparse
 from app.models import Favorite, User, ShoppingList
 
 with app.app_context():
