@@ -37,9 +37,19 @@
     margin: 1%; /* This adds a 1% margin around the cards */
  }
  .carousel-inner img {
-    height: 400px; /* Set the height to the desired value */
-    width: auto; /* Maintain the aspect ratio */
- }
+    max-width: 100%; /* Set the maximum width to 100% of the parent container */
+    height: auto;    /* Allow the height to adjust proportionally */
+    display: block;  /* Remove any extra spacing below the image */
+    margin: 0 auto;  /* Center the image horizontally within its container */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 767px) {
+    .carousel-inner img {
+        height: 300px; /* Adjust the height for smaller screens if needed */
+    }
+} /* Maintain the aspect ratio */
+
  /* Add this to your styles.css or equivalent stylesheet */
 
  .input-group {

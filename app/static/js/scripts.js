@@ -69,3 +69,9 @@ function useApiData(data) {
         .catch(error => console.error('Error:', error));
  }
  
+
+ // hide js
+ function showForm() {
+    document.getElementById('formContainer').style.display = 'block';
+    document.getElementById('buttonContainer').style.display = 'none';
+  }
