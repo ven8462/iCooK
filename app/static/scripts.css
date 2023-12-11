@@ -1,3 +1,8 @@
+.body
+{
+    background-color: black;
+}
+
 .input-group{
     margin-top: 50px;
     margin-bottom: 50px;
@@ -31,6 +36,78 @@
     flex: 1 0 21%; /* This makes the cards take up 21% of the container's width */
     margin: 1%; /* This adds a 1% margin around the cards */
  }
- .recipe-label {
-    color: #6a3d8b; /* dark purple */
-   }
+ .carousel-inner img {
+    max-width: 100%; /* Set the maximum width to 100% of the parent container */
+    height: auto;    /* Allow the height to adjust proportionally */
+    display: block;  /* Remove any extra spacing below the image */
+    margin: 0 auto;  /* Center the image horizontally within its container */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 767px) {
+    .carousel-inner img {
+        height: 300px; /* Adjust the height for smaller screens if needed */
+    }
+} /* Maintain the aspect ratio */
+
+ /* Add this to your styles.css or equivalent stylesheet */
+
+ .input-group {
+    position: relative;
+}
+
+#searchInput {
+    border-radius: 5px; /* Add border-radius for rounded corners */
+    padding-right: 35px; /* Adjust the padding on the right to make space for the button */
+}
+
+#search {
+    position: absolute;
+    right: 5px; /* Adjust the right position for button placement */
+    top: 50%; /* Center the button vertically */
+    transform: translateY(-50%);
+    border: none;
+    background-color: #1c3226;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#search:hover {
+    background-color: green;
+}
+
+.card {
+    border-radius: 15px; /* Adjust the border-radius to control the roundness of the edges */
+    overflow: hidden; /* Ensure content does not overflow rounded corners */
+}
+
+.card-img-top {
+    border-radius: 15px; /* Apply rounded corners to all corners of the image */
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.card-custom {
+    background-color: black;
+}
+.card-custom h5 a {
+    color: tan;
+    transform: skewX(-10deg); /* Adjust the angle as needed */
+}
+
+.content-container {
+    display: flex;
+}
+
+.content {
+    flex-grow: 1;
+}
+
+.static-photo {
+    max-width: 200px; /* Adjust the max-width as needed */
+    margin-left: 20px; /* Add margin for spacing */
+}

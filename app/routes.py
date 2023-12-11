@@ -5,20 +5,28 @@ from flask import jsonify, render_template, url_for, flash, redirect, request
 from app.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
                              RequestResetForm, ResetPasswordForm)
 from app import app, db, bcrypt
-from app.models import User
+from app.models import User, Favorite
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message, Mail
-from app.recipe import get_recipe_details
 import requests
+from app.models import Favorite, User, ShoppingList
 
+with app.app_context():
+   db.create_all()
 
 @app.route('/')
+def landing():
+    return render_template('landing.html')
+
 @app.route("/home")
 def home():
+    """Render the home page."""
     return render_template('index.html')
 
 @app.route("/recipe/<recipe_id>")
 def recipe(recipe_id):
+   """Render the recipe page for a given recipe ID."""
+   print(recipe_id)
    url = f"https://api.edamam.com/api/recipes/v2/{recipe_id}"
 
    params = {
@@ -38,22 +46,66 @@ def recipe(recipe_id):
    recipe_dict["url"] = response.get("recipe").get("url")
    recipe_dict["ingredients_list"] = response.get("recipe").get("ingredientLines")
 
-   return render_template('recipe.html', recipe=recipe_dict)
+   return render_template('recipe.html', recipe=recipe_dict,id=recipe_id)
 
+   
+@app.route("/add-to-favorites", methods=["POST"])
+@login_required
+def add_to_favorites():
+    """Add a recipe to the user's favorites."""
+    if request.method == "POST":
+        recipe_id = request.form.get("recipe_id")
+        print(recipe_id)
 
+        # Fetch recipe details using the recipe_id (similar to your /recipe/<recipe_id> route)
+        url = f"https://api.edamam.com/api/recipes/v2/{recipe_id}"
+        params = {
+            "type": "public",
+            "app_id": "5f8d15e8",
+            "app_key": "7e4f94d1f57158c014144b6f0864dc56",
+        }
 
+        response = requests.get(url, params=params)
+
+        if response.status_code == 200:
+            recipe_details = response.json().get("recipe")
+            if recipe_details:
+                # Create a Favorite object and save it to the database
+                favorite = Favorite(
+                    user_id=current_user.id,  # Assuming you're using Flask-Login for authentication
+                    title=recipe_details.get("label"),
+                    image=recipe_details.get("image"),
+                    source=recipe_details.get("source"),
+                    url=recipe_details.get("url"),
+
+                )
+
+                db.session.add(favorite)
+                db.session.commit()
+
+                flash("Recipe added to favorites", "success")
+            else:
+                flash("Error fetching recipe details from the API", "error")
+        else:
+            flash("Error in API request. Status Code: {}".format(response.status_code), "error")
+
+    # Redirect the user back to the recipe page
+    return redirect(url_for("recipe", recipe_id=recipe_id))
 
 @app.route("/about")
 def about():
-    return render_template('about.html', title='About')
+    """Render the about page."""
+    return render_template('landing.html', title='About')
 
 @app.route('/recipe/<id>', methods=['GET', ])
 def recipe_detail(id):
+     """Print the detailed view of a recipe."""
      recipe = get_recipe_details(id)
      return render_template('recipe_details.html', recipe=recipe)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+    """Handle user registration."""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RegistrationForm()
@@ -68,6 +120,7 @@ def register():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    """Handle user login."""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm()
@@ -84,6 +137,7 @@ def login():
 
 @app.route("/logout")
 def logout():
+    """Handle user logout."""
     logout_user()
     return redirect(url_for('home'))
 
@@ -105,6 +159,7 @@ def save_picture(form_picture):
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
+    """Renders user's account details"""
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.picture.data:
@@ -123,6 +178,7 @@ def account():
                            image_file=image_file, form=form)
 
 def send_reset_email(user):
+    """Send a password reset email to the user."""
     mail = Mail(app)
     token = user.get_reset_token()
     msg = Message('Password Reset Request',
@@ -138,6 +194,7 @@ If you did not make this request then simply ignore this email and no changes wi
 
 @app.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
+    """Handle the request to reset the user's password."""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RequestResetForm()
@@ -151,6 +208,7 @@ def reset_request():
 
 @app.route("/reset_password/<token>", methods=['GET', 'POST'])
 def reset_token(token):
+    """Handle the password reset token."""
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     user = User.verify_reset_token(token)
@@ -165,4 +223,70 @@ def reset_token(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
+
+@app.route('/favorites')
+def favorites():
+   # Get the favorites of the current user
+   favorites = current_user.get_favorites() if current_user.is_authenticated else []
+
+   # Pass the favorites to the template
+   return render_template('favourites.html', favorites=favorites)
+
+@app.route('/delete-favorite/<int:favorite_id>', methods=['POST'])
+@login_required
+def delete_favorite(favorite_id):
+    """Delete a recipe from the user's favorites."""
+    favorite = Favorite.query.get_or_404(favorite_id)
+
+    # Ensure that the current user owns the favorite before deleting
+    if favorite.user_id == current_user.id:
+        db.session.delete(favorite)
+        db.session.commit()
+        flash('Recipe deleted from favorites', 'success')
+    else:
+        flash('You are not authorized to delete this recipe', 'danger')
+
+    return redirect(url_for('favorites'))
+
+
+@app.route('/delete-shopping-list/<int:id>', methods=['POST'])
+@login_required
+def delete_shopping(id):
+    """Delete an item from the user's shopping list."""
+    del_shopping = ShoppingList.query.get_or_404(id)
+
+    # Ensure that the current user owns the favorite before deleting
+    if  del_shopping.user_id == current_user.id:
+        db.session.delete(del_shopping)
+        db.session.commit()
+        flash('Ingredient deleted from shopping list', 'success')
+    else:
+        flash('You are not authorized to delete this recipe', 'danger')
+
+    return redirect(url_for('favorites'))
+
+
+# Example route for adding to shopping list
+
+@app.route('/add-to-shopping-list', methods=['POST'])
+@login_required
+def add_to_shopping_list():
+    """Add selected ingredients to the user's shopping list."""
+    user_id = current_user.id
+    recipe_id = request.form.get('recipe_id')
+    selected_ingredients = request.form.getlist('ingredients[]')
+    print(user_id)
+    print(recipe_id)
+    print(selected_ingredients)
+
+    # Create ShoppingList entries for each selected ingredient
+    for ingredient in selected_ingredients:
+        shopping_list_item = ShoppingList(user_id=user_id, recipe_id=recipe_id, ingredient=ingredient)
+        db.session.add(shopping_list_item)
+
+    db.session.commit()
+
+    flash("Ingredients added to your shopping list", "success")
+
+    return redirect(url_for("recipe", recipe_id=recipe_id))
 

@@ -8,6 +8,7 @@
           <p class="text-secondary">{{ current_user.email }}</p>
         </div>
       </div>
+      <div id="formContainer" style="display: none;">
         <form method="POST" action="" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
@@ -52,6 +53,10 @@
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
             </div>
-        </form>
+            </form>
+        </div>
+        <div class="form-group mt-2" id="buttonContainer">
+            <button class="btn btn-outline-secondary" onclick="showForm()">Update Info</button>
+        </div>
     </div>
 {% endblock content %}

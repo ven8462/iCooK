@@ -1,21 +1,24 @@
 body {
-    background: #fafafa;
-    color: #333333;
+    background: black;
+    color: whitesmoke;
     margin-top: 5rem;
+    font-size: 18px; /* Adjust the font size as needed */
+    line-height: 1.2; 
   }
   
   h1, h2, h3, h4, h5, h6 {
-    color: #444444;
+    color: tan;
   }
   
   .bg-steel {
-    background: linear-gradient(to right, hsl(240, 75%, 12%), hsl(245, 45%, 21%));
+    background: linear-gradient(to right, #000, #333);
+
   }
   
   .site-header .navbar-nav .nav-link {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
-    color: #ffffff;
+    color: burlywood;
     overflow-x: hidden;
     background: var(--color-bg);
     font-size: 0.9rem;
@@ -30,48 +33,14 @@ body {
   }
   
   .content-section {
-    background: #ffffff;
+    background: black;
     padding: 10px 20px;
-    border: 1px solid #dddddd;
-    border-radius: 3px;
-    margin-bottom: 20px;
+    /* border: 1px solid ;
+    border-radius: 0px;
+    margin-bottom: 0px; */
   }
   
-  .article-title {
-    color: #444444;
-  }
   
-  a.article-title:hover {
-    color: #428bca;
-    text-decoration: none;
-  }
-  
-  .article-content {
-    white-space: pre-line;
-  }
-  
-  .article-img {
-    height: 65px;
-    width: 65px;
-    margin-right: 16px;
-  }
-  
-  .article-metadata {
-    padding-bottom: 1px;
-    margin-bottom: 4px;
-    border-bottom: 1px solid #e3e3e3
-  }
-  
-  .article-metadata a:hover {
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .article-svg {
-    width: 25px;
-    height: 25px;
-    vertical-align: middle;
-  }
   
   .account-img {
     height: 125px;
@@ -83,3 +52,65 @@ body {
   .account-heading {
     font-size: 2.5rem;
   }
+
+  .test{
+    border-bottom: 2px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+ }
+
+ .test-img {
+    border-radius: 50%;
+}
+
+/* delete button styling */
+/* Add this to your existing CSS or create a new style block */
+.shopping-list {
+    list-style: none;
+}
+
+.shopping-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.delete-form {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.delete-btn {
+    width: 20px; /* Adjust the width */
+    height: 20px; /* Adjust the height */
+    border-radius: 50%;
+    background-color: #123524; /* Customize the background color */
+    color: burlywood;
+    border: none;
+    font-size: 12px; /* Adjust the font size */
+    cursor: pointer;
+    line-height: 20px; /* Add this line to center the text vertically */
+}
+
+.item-name {
+    margin-left: 30px; /* Adjust the margin as needed */
+}
+
+
+.delete-button{
+    background-color:  red; /* Beautiful red color, adjust as needed */
+    color: white; /* Text color */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+
+    /* Additional styles for hover state */
+    &:hover {
+        background-color: #8B2D19; /* Darker red color on hover, adjust as needed */
+    }
+}

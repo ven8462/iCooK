@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--=============== FAVICON ===============-->
+        <link rel="icon" href="{{ url_for('static', filename='images/favicon.jpg') }}" type="image/x-icon">
+
+        <!--=============== REMIX ICONS ===============-->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.css') }}">
+
+        <title>iCooK</title>
+    </head>
+    <body>
+        <!--=============== HEADER ===============-->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="#" class="nav__logo">
+                    <img src="assets/img/logo.png" alt="">
+                </a>
+
+                <div class="nav__menu" id="nav-menu">
+
+
+                    <ul class="nav_list">
+                        <li class="nav_item"><a href="{{ url_for('home') }}" class="nav__link active-link">Home </a></li>
+                        <li class="nav_item"><a href="{{ url_for('register') }}" class="nav__link">Signup</a></li>
+                        <li class="nav_item"><a href="{{ url_for('login') }}"  class="nav__link">Log In </a></li>
+                </ul>
+                    <div class="nav__close" id="nav-close">
+                        <i class="ri-close-line"></i>
+                    </div>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-function-line"></i>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main">
+            <!--=============== HOME ===============-->
+            <section class="home section" id="home">
+                <div class="home__container container grid">
+                    <div>
+                        <img src="{{ url_for('static', filename='assets/img/product1.jpg') }}" class="d-block w-100" alt=".">
+                    </div>
+                    
+                    <div class="home__data">
+                        <div class="home__header">
+                            <h1 class="home__title">Eats</h1>
+                            <h2 class="home__subtitle">iCooK</h2>
+                        </div>
+
+                        <div class="home__footer">
+                            <h3 class="home__title-description">Love at First Bite</h3>
+                            <p class="home__description">Introducing iCooK – the app that's got your cravings covered, or at least attempted to cover them with a culinary blanket! 🍔🤔
+
+                                Don't know what to cook today? Fear not, because iCooK is here to rescue your taste buds from the abyss of indecision.
+                                <a href="{{ url_for('home') }}" class="btn-gradient">Get Started</a>  
+                            </p>
+                           
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!--=============== SPONSOR ===============-->
+            <section class="sponsor section">
+                <div class="sponsor__container container grid">
+                    <img src="{{ url_for('static', filename='assets/img/sponser1.jpg') }}" class="d-block w-100" alt=".">
+                    
+                </div>
+            </section>
+
+           
+            <!--=============== CASE ===============-->
+            <section class="case section grid" id="case">
+                <h2 class="section__title section__title-gradient">Taste The Difference</h2>
+
+                <div class="case__container container grid">
+                    <div>
+                        <img src="{{ url_for('static', filename='assets/img/cook.jpg') }}" class="d-block w-100" alt=".">
+                    </div>
+
+                    <div class="case__data">
+                        <p class="case__description">Explore your desired recipes today! Save your favorites or effortlessly add ingredients to your shopping list with just a click.
+
+                            <a href="{{ url_for('home') }}" class="btn-gradient" data-aos="fade" data-aos-duration="1000"
+                            data-aos-delay="20" data-aos-easing="ease-in">Try it yourself</a>
+    
+                        </p>
+                        
+                    </div>
+                </div>
+            </section>
+
+
+            <!--=============== Sample Recipes ===============-->
+            <section class="products section" id="products">
+                <h2 class="section__title section__title-gradient products__line">
+                    Yummy <br> Bites
+                </h2>
+
+                <div class="products__container container grid">
+                    <article class="products__card">
+                        <div class="products__content">
+                            <img src="{{ url_for('static', filename='assets/img/product1.jpg') }}" class="d-block w-100" alt=".">
+    
+                            <h3 class="products__title">Poached Salmon</h3>
+                            
+                        </div>
+                    </article>
+                    <article class="products__card">
+                        <div class="products__content">
+                            <img src="{{ url_for('static', filename='assets/img/product2.jpg') }}" class="d-block w-100" alt=".">
+    
+                            <h3 class="products__title">Avocado Salad</h3>
+                            
+                        </div>
+                    </article>
+                    <article class="products__card">
+                        <div class="products__content">
+                            <img src="{{ url_for('static', filename='assets/img/coffe.jpg') }}" class="d-block w-100" alt=".">
+    
+                            <h3 class="products__title">Coffee</h3>
+                           
+                        </div>
+                    </article>
+                    <article class="products__card">
+                        <div class="products__content">
+                            <img src="{{ url_for('static', filename='assets/img/product3.jpg') }}">
+    
+                            <h3 class="products__title">Godke Salad</h3>
+                            
+                        </div>
+                    </article>
+
+                    <article class="products__card">
+                        <div class="products__content">
+                            <img src="{{ url_for('static', filename='assets/img/chapo.jpg') }}">
+    
+                            <h3 class="products__title">Chapo Nyama</h3>
+                            
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <!--=============== FOOTER ===============-->
+        <footer class="footer section">
+            <div class="footer__container container grid">
+                <a href="#" class="footer__logo">
+                </a>
+    
+                <div class="footer__content">
+                    <h3 class="footer__title">Contacts</h3>
+    
+                    <ul class="footer__links">
+                        <li>
+                            <a href="#" class="footer__link">0759972442</a>
+                            <a href="#" class="footer__link">lavenderanyang09@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+    
+               
+                <div class="footer__content">
+                    <form action="" class="footer__form">
+                        <input type="email" placeholder="Email" class="footer__input">
+                        <button class="button button--flex">
+                            <i class="ri-send-plane-line button__icon"></i> Subscribe
+                        </button>
+                    </form>
+    
+                    <div class="footer__social">
+                        <a href="https://twitter.com/ven8462" target="_blank" class="footer__social-link">
+                            <i class="ri-twitter-line"></i>
+                        </a>
+                        <a href="https://github.com/ven8462" target="_blank" class="footer__social-link">
+                            <i class="ri-github-line"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/lavender-anyango-6522a9268/" target="_blank" class="footer__social-link">
+                            <i class="ri-linkedin-line"></i>
+                        </a>
+                        <a href="https://hashnode.com/@yourusername" target="_blank" class="footer__social-link">
+                            <i class="ri-blog-line"></i>
+                        </a>
+                     </div>
+                     
+
+            <p class="footer__copy">
+                <a href="https://twitter.com/ven8462" target="_blank" class="footer__copy-link">&#169; Lavender. All right reserved</a>
+            </p>
+        </footer>
+
+        <!--=============== SCROLL UP ===============-->
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class="ri-arrow-up-s-line scrollup__icon"></i>
+        </a>
+        
+        <!--=============== SCROLL REVEAL ===============-->
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <!--=============== LANDING JS ===============-->
+        <script src="{{ url_for('static', filename='js/landing.js') }}"></script>
+    </body>
+</html>
