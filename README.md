@@ -1,4 +1,7 @@
-```markdown
+Certainly! Here's an updated version of your README.md:
+
+---
+
 # iCook - Recipe App
 
 ## Introduction
@@ -200,4 +203,4 @@ A special thank you to the following resources and individuals who played a pivo
 - **Friend - [Victor ]:** A personal thank you for always showing up to help me debug my code and find solutions.
 - I also want to acknowledge [ALX](https://www.alxafrica.com/) for giving me this opportunity to learn a show case my skills by building this project. The community is so supportive and inspiring.
 
-iCook is truly a labor of love, and none of it would have been possible without the incredible support from these amazing resources and individuals. A heartfelt thank you for your guidance, encouragement, and patience that contributed to  every byte of iCook's development! 🌟💻🍲
+iCook is truly a labor of love, and none of it would have been possible without the incredible
