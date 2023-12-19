@@ -1,7 +1,7 @@
 
 # iCook - Recipe App
 
-![Project Logo](./app/static/assets/img.png)
+![Project Logo](./app/static/assets/img/readme.png)
 
 ## Introduction
 
