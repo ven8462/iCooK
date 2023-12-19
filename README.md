@@ -7,12 +7,14 @@
 
 Welcome to iCook, your culinary companion in the digital world! This project, developed as part of my ALX End of Foundations Portfolio, is a recipe app that invites users to explore, save, and enjoy a variety of delightful recipes. Crafted with Python Flask, JavaScript, Jinja2, and fueled by the Edamam API, iCook seamlessly blends backend logic, frontend interactivity, and database management to create a flavorful user experience.
 
-**Deployed Site:** [iCook App](#) *(www.icookapp.tech)*
+**Deployed Site:** [iCook App](www.icookapp.tech)
 
-**Final Project Blog Article:** [iCook Project Blog](#) *(replace with your blog article link)*
+**Final Project Blog Article:** [iCook Project Blog](#)
+
+**Project Slides:** [Slides](https://tome.app/ven-in-tech/recipe-recommender-app-clpuw51la04wvla7bk88wgsom)
 
 **Author(s) LinkedIn:**
-- [Lavender Anyango](#) *(https://www.linkedin.com/in/lavender-anyango-6522a9268/)*
+- [Lavender Anyango](https://www.linkedin.com/in/lavender-anyango-6522a9268/)
 
 ## Technology Stack
 
@@ -200,8 +202,8 @@ A special thank you to the following resources and individuals who played a pivo
 - [PYTHON FLASK TUTORIAL by Corey Schafer](https://www.youtube.com/watch?v=MwZwr5Tvyxo&t=26s)
 
 ### Individuals:
-- **Friend - [Wanjang'i Gituku]:**(https://github.com/Ras-Pekt?tab=repositories) Appreciation for constructive feedback and collaborative efforts that significantly enhanced the project's quality.
-- **Friend - [Victor ]:**(https://github.com/viictoo?tab=repositories) A personal thank you for always showing up to help me debug my code and find solutions.
+-  [Wanjang'i Gituku](https://github.com/Ras-Pekt?tab=repositories) Appreciation for constructive feedback and collaborative efforts that significantly enhanced the project's quality.
+- [Victor ](https://github.com/viictoo?tab=repositories) A personal thank you for always showing up to help me debug my code and find solutions.
 - I also want to acknowledge [ALX](https://www.alxafrica.com/) for giving me this opportunity to learn a show case my skills by building this project. The community is so supportive and inspiring.
 
 iCook is truly a labor of love, and none of it would have been possible without the incredible support from these amazing resources and individuals. A heartfelt thank you for your guidance, encouragement, and patience that contributed to  every byte of iCook's development! 🌟💻🍲
