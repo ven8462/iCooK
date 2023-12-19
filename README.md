@@ -1,6 +1,8 @@
 
 # iCook - Recipe App
 
+![Project Logo](./app/static/assets/img.png)
+
 ## Introduction
 
 Welcome to iCook, your culinary companion in the digital world! This project, developed as part of my ALX End of Foundations Portfolio, is a recipe app that invites users to explore, save, and enjoy a variety of delightful recipes. Crafted with Python Flask, JavaScript, Jinja2, and fueled by the Edamam API, iCook seamlessly blends backend logic, frontend interactivity, and database management to create a flavorful user experience.
