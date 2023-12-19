@@ -25,28 +25,21 @@ def home():
 
 @app.route("/recipe/<recipe_id>")
 def recipe(recipe_id):
-   """Render the recipe page for a given recipe ID."""
-   print(recipe_id)
-   url = f"https://api.edamam.com/api/recipes/v2/{recipe_id}"
+  """Render the recipe page for a given recipe ID."""
+  print(recipe_id)
+  url = f"https://api.edamam.com/api/recipes/v2/{recipe_id}?type=public&app_id=5f8d15e8&app_key=7e4f94d1f57158c014144b6f0864dc56"
 
-   params = {
-   "type": "public",
-   "app_id": "5f8d15e8",
-   "app_key": "7e4f94d1f57158c014144b6f0864dc56",
-}
+  response = requests.get(url).json()
 
+  recipe_dict = {}
 
-   response = requests.get(url, params=params).json()
+  recipe_dict["title"] = response.get("recipe").get("label")
+  recipe_dict["image"] = response.get("recipe").get("image") 
+  recipe_dict["source"] = response.get("recipe").get("source")
+  recipe_dict["url"] = response.get("recipe").get("url")
+  recipe_dict["ingredients_list"] = response.get("recipe").get("ingredientLines")
 
-   recipe_dict = {}
-
-   recipe_dict["title"] = response.get("recipe").get("label")
-   recipe_dict["image"] = response.get("recipe").get("image") 
-   recipe_dict["source"] = response.get("recipe").get("source")
-   recipe_dict["url"] = response.get("recipe").get("url")
-   recipe_dict["ingredients_list"] = response.get("recipe").get("ingredientLines")
-
-   return render_template('recipe.html', recipe=recipe_dict,id=recipe_id)
+  return render_template('recipe.html', recipe=recipe_dict,id=recipe_id)
 
    
 @app.route("/add-to-favorites", methods=["POST"])
