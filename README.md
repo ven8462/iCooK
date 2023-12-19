@@ -1,6 +1,3 @@
-Certainly! Here's an updated version of your README.md:
-
----
 
 # iCook - Recipe App
 
@@ -13,7 +10,7 @@ Welcome to iCook, your culinary companion in the digital world! This project, de
 **Final Project Blog Article:** [iCook Project Blog](#) *(replace with your blog article link)*
 
 **Author(s) LinkedIn:**
-- [Your Name](#) *(replace with author's LinkedIn profile link)*
+- [Lavender Anyango](#) *(https://www.linkedin.com/in/lavender-anyango-6522a9268/)*
 
 ## Technology Stack
 
@@ -191,16 +188,19 @@ Ready to take iCook to the world? Follow these steps:
 A special thank you to the following resources and individuals who played a pivotal role in the development of iCook:
 
 ### Resources:
-- [The Flask Mega Tutorial](#)
-- [Digital Ocean Gunicorn Installation](#)
-- [Digital Ocean Nginx Installation](#)
-- [Digital Ocean Server Setup](#)
-- [Flask Documentation](#)
-- [chatGPT](#)
+- [SECTION 3 GUIDE](https://docs.google.com/document/d/1KtK5lm2cTzs6eudFUEtBCo8Zdt3Pl-VKhlald4NzNKo/edit)
+- [The Flask Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
+- [Digital Ocean Gunicorn Installation](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-20-04)
+- [Digital Ocean Nginx Installation](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04)
+- [Digital Ocean Server Setup](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04)
+- [Flask Documentation](https://flask.palletsprojects.com/en/3.0.x/)
+- [THE MODERN JS TUTORIAL](https://javascript.info/)
+- [PYTHON FLASK TUTORIAL by Corey Schafer](https://www.youtube.com/watch?v=MwZwr5Tvyxo&t=26s)
 
 ### Individuals:
-- **Friend - [Wanjang'i Gituku]:** Appreciation for constructive feedback and collaborative efforts that significantly enhanced the project's quality.
-- **Friend - [Victor ]:** A personal thank you for always showing up to help me debug my code and find solutions.
+- **Friend - [Wanjang'i Gituku]:**(https://github.com/Ras-Pekt?tab=repositories) Appreciation for constructive feedback and collaborative efforts that significantly enhanced the project's quality.
+- **Friend - [Victor ]:**(https://github.com/viictoo?tab=repositories) A personal thank you for always showing up to help me debug my code and find solutions.
 - I also want to acknowledge [ALX](https://www.alxafrica.com/) for giving me this opportunity to learn a show case my skills by building this project. The community is so supportive and inspiring.
 
-iCook is truly a labor of love, and none of it would have been possible without the incredible
+iCook is truly a labor of love, and none of it would have been possible without the incredible support from these amazing resources and individuals. A heartfelt thank you for your guidance, encouragement, and patience that contributed to  every byte of iCook's development! 🌟💻🍲
+
