@@ -9,7 +9,7 @@ Welcome to iCook, your culinary companion in the digital world! This project, de
 
 **Deployed Site:** [iCook App](www.icookapp.tech)
 
-**Final Project Blog Article:** [iCook Project Blog](#)
+**Final Project Blog Article:** [iCook Project Blog](https://venintech.hashnode.dev/cooking-with-code-the-techy-tale-of-icook)
 
 **Project Slides:** [Slides](https://tome.app/ven-in-tech/recipe-recommender-app-clpuw51la04wvla7bk88wgsom)
 
