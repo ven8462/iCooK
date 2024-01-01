@@ -22,6 +22,7 @@ Welcome to iCook, your culinary companion in the digital world! This project, de
 - HTML
 - CSS
 - JavaScript
+-Sassy CSS
 
 ### Backend:
 - Flask (Microframework for Python)
@@ -49,7 +50,7 @@ The architecture of iCook follows a well-thought-out structure to enhance code o
     - `forms.py`: Flask forms to handle user input.
     - `__init__.py`: Marks the 'app' directory as a Python package.
     - `models.py`: Defines database models.
-    - `routes.py`: Defines Flask routes and views.
+    - `routes.py`: Defines Flask routes and their logic
   - **Configuration and Main Application File:**
     - `config.py`: Holds configuration settings for the Flask application.
     - `icook.py`: Main application module for the Flask application. Sets up Flask and provides utility for Flask shell.
